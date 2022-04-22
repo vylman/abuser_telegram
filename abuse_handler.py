@@ -30,9 +30,9 @@ class AbuseTg(object):
                 res = self.client(functions.contacts.DeleteContactsRequest(id=[user]))
                 for user in res.users:
                     first_name = user.first_name
-                    second_name=user.second_name
-                with open(self.outputFile,'w') as outputFile:
-                    print(tg_id, number, nick_name, file=outputFile)
+                    second_name=user.last_name
+                with open(self.outputFile,'a', encoding='windows-1251') as outputFile:
+                    print(tg_id, number, nick_name, first_name, second_name, file=outputFile)
             time.sleep(1)
         except FloodWaitError as e:
             print(f"Blocked for {str(e.seconds)} sec, waiting this!")
@@ -44,4 +44,3 @@ class AbuseTg(object):
         with open(self.numlist,'r') as phone_numbers:
             for number in phone_numbers:
                 res = self.__import_numbers(number.strip())
-
