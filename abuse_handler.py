@@ -12,7 +12,6 @@ class AbuseTg(object):
         self.numlist = numlist
         self.outputFile = outputFile if outputFile is not None else 'output.txt'
         self.client.connect()
-        self.client.connect()
         if not self.client.is_user_authorized():
             self.client.send_code_request(phone)
             self.client.sign_in(phone, input('Enter code:'))
